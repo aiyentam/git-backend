@@ -11,17 +11,6 @@ app.use(cors());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-app.get(
-  ("/gifs",
-  (req, res) => {
-    Gifs.find()
-      .then(data => {
-        res.json(data);
-      })
-      .catch(err => {
-        console.log(err);
-      });
-  })
-);
+app.use("/gifs", gifController);
 
-app.listen(3000, () => console.log("I am running"));
+app.listen(3001, () => console.log("I am running"));

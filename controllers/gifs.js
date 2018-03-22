@@ -13,7 +13,12 @@ router.get("/", (req, res) => {
 });
 
 router.post("/", (req, res) => {
-  Gifs.create(req.body).then(gifs => {
+  console.log(req.body);
+  const newGif = {
+    name: req.body.uploadedImg.name,
+    url: req.body.uploadedImg.imgUrl
+  };
+  Gifs.create(newGif).then(gifs => {
     Gifs.find({}).then(gifs => res.json(gifs));
   });
 });
